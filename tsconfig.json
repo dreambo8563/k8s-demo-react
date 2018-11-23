@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es5",
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "declaration": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "removeComments": true,
+    "strictNullChecks": false,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "build",
+    "lib": ["es6", "es7", "dom"],
+    "baseUrl": "./",
+    "paths": {
+      "@stores/*": ["src/app/stores/*"],
+      "@stores": ["src/app/stores/index"],
+      "@constants/*": ["src/app/constants/*"]
+    }
+  },
+  "exclude": ["dist", "build", "node_modules"]
+}
