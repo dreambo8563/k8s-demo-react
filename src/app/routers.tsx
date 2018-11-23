@@ -36,6 +36,14 @@ export default class App extends React.Component {
                 )}
               />
               <Route
+                path="/404"
+                component={loadComponent(() =>
+                  import("./components/Common/NotFound").then(
+                    (module: any) => module.default
+                  )
+                )}
+              />
+              <Route
                 component={loadComponent(() =>
                   import("./components/Common/NotFound").then(
                     (module: any) => module.default
