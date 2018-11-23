@@ -3,9 +3,9 @@ import { Icon, Layout, Menu } from "antd"
 import { inject, observer } from "mobx-react"
 import * as React from "react"
 
-import Link from "../../components/Common/Link"
-import { STORE_APP, STORE_ROUTER } from "../../constants/stores"
-import RouterStore from "../../stores/RouterStore"
+import Link from "@components/Common/Link"
+import { STORE_APP, STORE_ROUTER } from "@constants/stores"
+import RouterStore from "@stores/RouterStore"
 import s from "./style.css"
 
 const { Header, Sider, Content } = Layout
@@ -25,7 +25,7 @@ export class SidebarLayout extends React.Component<
   SidebarLayoutState
 > {
   public rootSubmenuKeys = ["sales", "courses", "examples"]
-  constructor(props) {
+  constructor(props: SidebarLayoutProps) {
     super(props)
     this.state = {
       collapsed: false,
@@ -37,9 +37,6 @@ export class SidebarLayout extends React.Component<
     this.setState({
       collapsed: !this.state.collapsed
     })
-  }
-  public componentWillReceiveProps(nextProps: any) {
-    // console.log(nextProps)
   }
   public componentDidMount() {
     const router = this.props[STORE_ROUTER] as RouterStore
@@ -78,8 +75,7 @@ export class SidebarLayout extends React.Component<
               onOpenChange={this.onOpenChange}
               openKeys={openKeys}
               theme="dark"
-              mode="inline"
-            >
+              mode="inline">
               <SubMenu
                 key={`sales`}
                 title={
@@ -87,8 +83,7 @@ export class SidebarLayout extends React.Component<
                     <Icon type="mail" />
                     <span>Sales System</span>
                   </span>
-                }
-              >
+                }>
                 <Menu.Item key="orders">
                   <Link to="/sales/orders/list">orders list</Link>
                 </Menu.Item>
@@ -100,8 +95,7 @@ export class SidebarLayout extends React.Component<
                     <Icon type="mail" />
                     <span>Examples</span>
                   </span>
-                }
-              >
+                }>
                 <Menu.Item key="profiles">
                   <Link to="/examples/profiles/blog">Profiles</Link>
                 </Menu.Item>
@@ -119,8 +113,7 @@ export class SidebarLayout extends React.Component<
                     <Icon type="appstore" />
                     <span>Navigation Two</span>
                   </span>
-                }
-              >
+                }>
                 <Menu.Item key="subscribe">
                   <Link to="/courses/subscribe/list">Class Management</Link>
                 </Menu.Item>
@@ -146,8 +139,7 @@ export class SidebarLayout extends React.Component<
                 background: "#fff",
                 margin: "24px 16px",
                 padding: 24
-              }}
-            >
+              }}>
               {children}
             </Content>
           </Layout>

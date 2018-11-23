@@ -1,9 +1,6 @@
-import { action, autorun, observable } from "mobx"
+import { action, observable } from "mobx"
 
 export class AppStore {
-  // public loadingChange = autorun(() => {
-  //   console.log(this.loading)
-  // })
   @observable public loading: boolean
   @observable public title: string
   constructor() {

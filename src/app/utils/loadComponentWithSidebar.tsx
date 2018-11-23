@@ -1,9 +1,11 @@
+import { SidebarLayout } from "@layouts/SidebarLayout"
 import * as React from "react"
-import { SidebarLayout } from "../layouts/SidebarLayout"
 
-export function loadComponentWithSidebar(getComponent) {
+export function loadComponentWithSidebar(
+  getComponent: () => Promise<React.ComponentClass>
+) {
   return class AsyncComponent extends React.Component {
-    public static Component = null
+    public static Component: React.ComponentClass | null = null
     public state = { Component: AsyncComponent.Component }
 
     public componentWillMount() {

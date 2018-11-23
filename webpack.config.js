@@ -50,10 +50,15 @@ const common = merge([
     resolve: {
       extensions: [".js", ".ts", ".tsx", ".css"],
       mainFields: ["module", "browser", "main"],
-        alias: {
-          "@constants": path.resolve(__dirname, "src/app/constants"),
-          "@stores": path.resolve(__dirname, "src/app/stores")
-        }
+      alias: {
+        "@constants": path.resolve(__dirname, "src/app/constants"),
+        "@stores": path.resolve(__dirname, "src/app/stores"),
+        "@utils": path.resolve(__dirname, "src/app/utils"),
+        "@containers": path.resolve(__dirname, "src/app/containers"),
+        "@components": path.resolve(__dirname, "src/app/components"),
+        "@assets": path.resolve(__dirname, "src/assets"),
+        "@layouts": path.resolve(__dirname, "src/app/layouts")
+      }
     }
   },
   parts.loadTsx(),

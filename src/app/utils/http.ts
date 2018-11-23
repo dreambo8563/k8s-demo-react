@@ -47,7 +47,7 @@ http.interceptors.response.use(
       })
     } else if (error.response.status === 404) {
       // FIXME: make login as constants
-      history.push("/login")
+      return history.push("/login")
     } else {
       return Promise.reject(error.response)
     }

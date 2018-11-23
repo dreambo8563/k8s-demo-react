@@ -1,8 +1,10 @@
 import * as React from "react"
 
-export function loadComponent(getComponent) {
+export function loadComponent(
+  getComponent: () => Promise<React.ComponentClass>
+) {
   return class AsyncComponent extends React.Component {
-    public static Component = null
+    public static Component: React.ComponentClass | null = null
     public state = { Component: AsyncComponent.Component }
 
     public componentWillMount() {

@@ -12,7 +12,7 @@ export interface LinkState {}
 @inject(STORE_ROUTER)
 @observer
 export class Link extends React.Component<LinkProps, LinkState> {
-  constructor(props?: LinkProps, context?: any) {
+  constructor(props: LinkProps, context: any) {
     super(props, context)
   }
   public render() {

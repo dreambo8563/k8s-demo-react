@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "declaration": false,
+    "declaration": true,
     "noImplicitAny": false,
     "noImplicitReturns": false,
     "removeComments": true,
@@ -20,7 +20,12 @@
     "paths": {
       "@stores/*": ["src/app/stores/*"],
       "@stores": ["src/app/stores/index"],
-      "@constants/*": ["src/app/constants/*"]
+      "@constants/*": ["src/app/constants/*"],
+      "@utils/*": ["src/app/utils/*"],
+      "@containers/*": ["src/app/containers/*"],
+      "@components/*": ["src/app/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@layouts/*": ["src/app/layouts/*"]
     }
   },
   "exclude": ["dist", "build", "node_modules"]

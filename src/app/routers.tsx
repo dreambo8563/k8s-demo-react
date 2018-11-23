@@ -1,4 +1,5 @@
 import { STORE_APP, STORE_LOGIN, STORE_ROUTER } from "@constants/stores"
+import { loadComponent } from "@utils/loadComponent"
 import { createBrowserHistory } from "history"
 import { Provider } from "mobx-react"
 import React from "react"
@@ -6,7 +7,6 @@ import { Redirect, Route, Router, Switch } from "react-router"
 
 import { Root } from "./layouts/Root"
 import { AppStore, LoginStore, RouterStore } from "./stores"
-import { loadComponent } from "./utils/loadComponent"
 
 // prepare MobX stores
 export const history = createBrowserHistory()
