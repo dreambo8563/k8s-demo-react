@@ -1,5 +1,7 @@
+import { Path } from "@constants/url"
 import { notification } from "antd"
 import axios from "axios"
+
 import { appStore, history } from "../routers"
 
 // 创建axios实例常量配置
@@ -34,7 +36,15 @@ http.interceptors.request.use(
  */
 http.interceptors.response.use(
   config => {
-    return config.data || {}
+    // console.log(config, "config")
+    if (!config.data.success) {
+      notification.warning({
+        message: "Warning",
+        description: config.data.msg
+      })
+      return
+    }
+    return config.data.data || {}
   },
   (error: any) => {
     // 登录失败|禁用|token失效等相关问题返回401，此处做跳转登录页动作
@@ -46,8 +56,7 @@ http.interceptors.response.use(
           " This is the content of the notification."
       })
     } else if (error.response.status === 404) {
-      // FIXME: make login as constants
-      history.push("/404")
+      history.push(Path.Not_Found)
       return
     } else {
       return Promise.reject(error.response)

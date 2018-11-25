@@ -35,7 +35,7 @@ exports.devServer = function({ src, host, port }) {
         //     req.headers.host = "qa-tools-node.snaplingo.com"
         //   }
         // }
-        "/api": "http://localhost:8192"
+        "/api/auth": "http://localhost:8080"
       },
       // Parse host and port from env to allow customization.
       //

@@ -1,11 +1,12 @@
 import { STORE_APP, STORE_LOGIN, STORE_ROUTER } from "@constants/stores"
+import { Path } from "@constants/url"
+import { Root } from "@layouts/Root"
 import { loadComponent } from "@utils/loadComponent"
 import { createBrowserHistory } from "history"
 import { Provider } from "mobx-react"
 import React from "react"
 import { Redirect, Route, Router, Switch } from "react-router"
 
-import { Root } from "./layouts/Root"
 import { AppStore, LoginStore, RouterStore } from "./stores"
 
 // prepare MobX stores
@@ -36,7 +37,7 @@ export default class App extends React.Component {
                 )}
               />
               <Route
-                path="/404"
+                path={Path.Not_Found}
                 component={loadComponent(() =>
                   import("./components/Common/NotFound").then(
                     (module: any) => module.default
