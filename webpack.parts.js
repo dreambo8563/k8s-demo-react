@@ -317,6 +317,15 @@ exports.setFreeVariable = function(key, value) {
     plugins: [new webpack.DefinePlugin(env)]
   }
 }
+exports.setENV = function(e) {
+  const env = {}
+  for (const key in e) {
+    env[`process.env.${key.toUpperCase()}`] = JSON.stringify(e[key])
+  }
+  return {
+    plugins: [new webpack.DefinePlugin(env)]
+  }
+}
 
 exports.minifyCSS = ({ options }) => ({
   plugins: [

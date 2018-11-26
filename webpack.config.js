@@ -8,11 +8,13 @@ const merge = require("webpack-merge")
 const OfflinePlugin = require("offline-plugin")
 const parts = require("./webpack.parts")
 const isProduction = process.argv.indexOf("-p") >= 0
+const getConfig = require("./src/conf")
 
 const PATHS = {
   app: path.join(__dirname, "src"),
   build: path.join(__dirname, "../", "tmp")
 }
+const ENVConf = getConfig(isProduction)
 
 const common = merge([
   {
@@ -61,6 +63,7 @@ const common = merge([
       }
     }
   },
+  parts.setENV(ENVConf),
   parts.loadTsx(),
   parts.loadImages({
     options: {
@@ -90,7 +93,6 @@ module.exports = function() {
         ]
       },
       parts.clean(PATHS.build),
-      parts.setFreeVariable("process.env.NODE_ENV", "production"),
       parts.minifyJavaScript({ useSourceMap: true }),
       parts.extractBundles({
         bundles: [

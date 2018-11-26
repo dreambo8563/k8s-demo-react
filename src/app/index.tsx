@@ -11,7 +11,9 @@ import ReactDOM from "react-dom"
 import App from "./routers"
 
 // enable MobX strict mode
-
+if (process.env.NODE_ENV === "development") {
+  console.log(process.env.APPID)
+}
 configure({ enforceActions: "always" })
 
 // render react DOM
