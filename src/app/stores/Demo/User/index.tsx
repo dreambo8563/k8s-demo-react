@@ -1,6 +1,6 @@
 import { action, computed, observable } from "mobx"
 
-export class LoginStore {
+export class UserStore {
   @observable public userName: string | undefined = undefined
   @observable public password: string | undefined = undefined
 
@@ -19,4 +19,4 @@ export class LoginStore {
   }
 }
 
-export default LoginStore
+export default UserStore

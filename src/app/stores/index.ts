@@ -1,3 +1,3 @@
 export { RouterStore } from "./RouterStore"
 export { AppStore } from "./AppStore"
-export { LoginStore } from "./Demo/Login"
+export { UserStore } from "./Demo/User"

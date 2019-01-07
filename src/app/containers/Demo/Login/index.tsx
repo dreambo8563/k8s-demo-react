@@ -1,10 +1,11 @@
 import { login } from "@constants/api"
-import { STORE_APP, STORE_LOGIN, STORE_ROUTER } from "@constants/stores"
-import { LoginStore } from "@stores"
+import { STORE_APP, STORE_ROUTER, STORE_USER } from "@constants/stores"
+import { AppStore, UserStore } from "@stores"
 import { Button, Form, Icon, Input } from "antd"
 import { FormComponentProps } from "antd/lib/form"
 import cx from "classnames"
 import { inject, observer } from "mobx-react"
+import { RouterStore } from "mobx-react-router"
 import React, { Component } from "react"
 
 import s from "./style.css"
@@ -28,7 +29,7 @@ enum LoginFromPlaceholder {
 
 const FormItem = Form.Item
 
-@inject(STORE_APP, STORE_LOGIN, STORE_ROUTER)
+@inject(STORE_APP, STORE_USER, STORE_ROUTER)
 @observer
 class Login extends Component<LoginProps, LoginState> {
   private readonly inputIconStyle = { color: "rgba(0,0,0,.25)" }
@@ -39,7 +40,7 @@ class Login extends Component<LoginProps, LoginState> {
 
   public render() {
     const { getFieldDecorator } = this.props.form
-    const { canSubmit } = this.props[STORE_LOGIN]
+    const { canSubmit } = this.props[STORE_USER]
 
     return (
       <Form layout="inline" onSubmit={this.handleSubmit}>
@@ -80,10 +81,13 @@ class Login extends Component<LoginProps, LoginState> {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values)
         login(values)
-          .then(result => {
-            console.log(result)
+          .then((result: { token: string }) => {
+            const { token } = result
+            const { setToken } = this.props[STORE_APP] as AppStore
+            setToken(token)
+            const router = this.props[STORE_ROUTER] as RouterStore
+            router.push("/home")
           })
           .catch(error => {
             console.log(error)
@@ -96,7 +100,7 @@ class Login extends Component<LoginProps, LoginState> {
     type: string,
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const { setName, setPassword } = this.props[STORE_LOGIN] as LoginStore
+    const { setName, setPassword } = this.props[STORE_USER] as UserStore
     if (type === LoginFromProps.UserName) {
       setName(e.target.value)
     }

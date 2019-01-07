@@ -1,4 +1,4 @@
-import { STORE_APP, STORE_LOGIN, STORE_ROUTER } from "@constants/stores"
+import { STORE_APP, STORE_ROUTER, STORE_USER } from "@constants/stores"
 import { Path } from "@constants/url"
 import { Root } from "@layouts/Root"
 import { loadComponent } from "@utils/loadComponent"
@@ -7,17 +7,17 @@ import { Provider } from "mobx-react"
 import React from "react"
 import { Redirect, Route, Router, Switch } from "react-router"
 
-import { AppStore, LoginStore, RouterStore } from "./stores"
+import { AppStore, RouterStore, UserStore } from "./stores"
 
 // prepare MobX stores
 export const history = createBrowserHistory()
 const routerStore = new RouterStore(history)
 export const appStore = new AppStore()
-export const loginStore = new LoginStore()
+export const userStore = new UserStore()
 const rootStores = {
   [STORE_ROUTER]: routerStore,
   [STORE_APP]: appStore,
-  [STORE_LOGIN]: loginStore
+  [STORE_USER]: userStore
 }
 
 export default class App extends React.Component {
@@ -32,6 +32,14 @@ export default class App extends React.Component {
                 path="/login"
                 component={loadComponent(() =>
                   import("./containers/Demo/Login").then(
+                    (module: any) => module.default
+                  )
+                )}
+              />
+              <Route
+                path="/home"
+                component={loadComponent(() =>
+                  import("./containers/Demo/Dashboard").then(
                     (module: any) => module.default
                   )
                 )}
