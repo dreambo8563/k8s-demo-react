@@ -1,5 +1,7 @@
 ## Setup
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/dreambo8563/k8s-demo-react.svg)](https://greenkeeper.io/)
+
 ```
 $ npm install
 ```
